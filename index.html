@@ -1,21 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube - Broadcast Yourself.</title>
+    <style>
+        /* --- 2005 THEME CSS --- */
+        body { background-color: #FFF; font-family: Arial, Helvetica, sans-serif; font-size: 12px; margin: 0; padding: 0; color: #333; }
+        #container { width: 800px; margin: 0 auto; border: 1px solid #CCC; border-top: none; min-height: 100vh; }
+        
+        /* HEADER & LOGO */
+        header { background-color: #EEE; padding: 10px; border-bottom: 1px solid #CCC; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: bold; color: #000; text-decoration: none; letter-spacing: -1px; }
+        .logo span { background-color: #CC0000; color: #FFF; padding: 1px 4px; border-radius: 3px; }
+        
+        /* NAVIGATION */
+        nav { background-color: #DDD; padding: 5px 10px; border-bottom: 1px solid #CCC; font-weight: bold; }
+        nav a { color: #0033CC; text-decoration: none; margin-right: 12px; }
+        nav a:hover { text-decoration: underline; }
+
+        /* SEARCH BAR */
+        #search-box { padding: 15px; text-align: center; background-color: #F2F2F2; border-bottom: 1px solid #E5E5E5; }
+        #search-box input { width: 350px; padding: 3px; border: 1px solid #777; border-radius: 2px; }
+        #search-box button { padding: 2px 10px; cursor: pointer; font-size: 11px; }
+
+        /* LAYOUT SECTIONS */
+        #content-wrapper { display: flex; padding: 15px; gap: 20px; }
+        #main-view { flex: 3; }
+        #sidebar { flex: 1; background: #F9F9F9; border: 1px solid #E5E5E5; padding: 10px; height: fit-content; }
+        
+        h2 { font-size: 14px; color: #CC0000; border-bottom: 1px solid #CCC; padding-bottom: 3px; margin: 0 0 15px 0; }
+
+        /* VIDEO PLAYER STYLES */
+        #player-container { display: none; margin-bottom: 20px; border-bottom: 2px solid #EEE; padding-bottom: 15px; }
+        video { width: 100%; background: #000; border: 1px solid #000; }
+        .player-info h1 { font-size: 18px; margin: 10px 0 5px 0; }
+        
+        /* VIDEO GRID STYLES */
+        .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .vid-card { text-align: left; cursor: pointer; width: 140px; }
+        .thumb { width: 130px; height: 97px; background: #333; border: 1px solid #999; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 10px; }
+        .vid-title { color: #0033CC; font-weight: bold; display: block; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .vid-meta { font-size: 11px; color: #666; margin-top: 2px; }
+
+        /* FOOTER */
+        footer { text-align: center; padding: 20px; font-size: 11px; color: #777; border-top: 1px solid #CCC; }
+    </style>
+</head>
+<body>
+
 <div id="container">
-    <div id="header">
-        <img src="assets/logo.png" alt="YouTube Logo">
-        <nav>
-            <a href="#">Home</a> | <a href="#">Videos</a> | <a href="#">Channels</a>
-        </nav>
+    <header>
+        <a href="index.html" class="logo">You<span>Tube</span></a>
+        <div><a href="#">Sign Up</a> | <a href="#">Log In</a> | <a href="#">Help</a></div>
+    </header>
+
+    <nav>
+        <a href="#" onclick="showHome()">Home</a>
+        <a href="#">Videos</a>
+        <a href="#">Channels</a>
+        <a href="#">Upload</a>
+    </nav>
+
+    <div id="search-box">
+        <input type="text" id="query" placeholder="Search videos...">
+        <button onclick="searchVideos()">Search</button>
     </div>
-    
-    <div id="main-content">
-        <div class="video-box">
-            <h3>Featured Videos</h3>
-            <div class="video-grid">
-                <!-- Retro YouTube used simple tables or floated divs -->
-                <div class="thumbnail">
-                    <img src="video-thumb.jpg" width="120">
-                    <p>Me at the zoo</p>
+
+    <div id="content-wrapper">
+        <div id="main-view">
+            <!-- Video Player Section (Hidden by default) -->
+            <div id="player-container">
+                <video id="main-video" controls autoplay></video>
+                <div class="player-info">
+                    <h1 id="playing-title">Video Title</h1>
+                    <p class="vid-meta">Added: <span id="playing-date">June 2005</span> | Views: <span id="playing-views">0</span></p>
+                    <button onclick="alert('Subscribed!')">Subscribe</button>
                 </div>
             </div>
+
+            <h2 id="section-title">Featured Videos</h2>
+            <div id="video-list" class="video-grid">
+                <!-- Videos will be injected here -->
+            </div>
+        </div>
+
+        <div id="sidebar">
+            <h2>What's New</h2>
+            <p>Welcome to the 2005 YouTube experience!</p>
+            <p><a href="#">Contact Us</a></p>
+            <p><strong>Total Videos:</strong> 1,502</p>
         </div>
     </div>
+
+    <footer>
+        &copy; 2005 YouTube, LLC | <a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a>
+    </footer>
 </div>
+
+<script>
+    /* --- 2005 LOGIC JS --- */
+    const database = [
+        { id: 1, title: "Me at the zoo", views: 42091, author: "jawed", date: "Apr 23, 2005", color: "#444" },
+        { id: 2, title: "Evolution of Dance", views: 98102, author: "judson", date: "May 12, 2005", color: "#555" },
+        { id: 3, title: "Linkin Park Numb", views: 88401, author: "warner", date: "June 1, 2005", color: "#222" },
+        { id: 4, title: "Hahaha Baby Laugh", views: 12500, author: "mommy1", date: "July 10, 2005", color: "#666" },
+        { id: 5, title: "First Vlog", views: 3200, author: "vlogman", date: "Aug 5, 2005", color: "#777" },
+        { id: 6, title: "Testing Video", views: 105, author: "admin", date: "Dec 30, 2005", color: "#000" }
+    ];
+
+    function loadVideos(list) {
+        const grid = document.getElementById('video-list');
+        grid.innerHTML = '';
+        list.forEach(vid => {
+            grid.innerHTML += `
+                <div class="vid-card" onclick="playVideo(${vid.id})">
+                    <div class="thumb" style="background-color:${vid.color}">[VIDEO]</div>
+                    <span class="vid-title">${vid.title}</span>
+                    <div class="vid-meta">by <strong>${vid.author}</strong></div>
+                    <div class="vid-meta">${vid.views.toLocaleString()} views</div>
+                </div>
+            `;
+        });
+    }
+
+    function playVideo(id) {
+        const video = database.find(v => v.id === id);
+        document.getElementById('player-container').style.display = 'block';
+        document.getElementById('section-title').innerText = "Related Videos";
+        document.getElementById('playing-title').innerText = video.title;
+        document.getElementById('playing-views').innerText = video.views.toLocaleString();
+        document.getElementById('playing-date').innerText = video.date;
+        
+        // In a real app, you would set video.src here
+        // document.getElementById('main-video').src = "path/to/video.mp4";
+        
+        window.scrollTo(0, 150);
+    }
+
+    function searchVideos() {
+        const q = document.getElementById('query').value.toLowerCase();
+        const results = database.filter(v => v.title.toLowerCase().includes(q));
+        document.getElementById('section-title').innerText = "Search Results";
+        loadVideos(results);
+    }
+
+    function showHome() {
+        document.getElementById('player-container').style.display = 'none';
+        document.getElementById('section-title').innerText = "Featured Videos";
+        loadVideos(database);
+    }
+
+    // Initialize the page
+    loadVideos(database);
+</script>
+
+</body>
+</html>
