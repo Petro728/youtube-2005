@@ -1,0 +1,89 @@
+/* 2005 Global Styles */
+body {
+    background-color: #FFFFFF;
+    color: #333333;
+    font-family: Arial, Helvetica, sans-serif; /* Standard 2005 web-safe fonts */
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+
+/* Layout Container */
+#container {
+    width: 800px; /* Fixed width was standard */
+    margin: 10px auto;
+    border: 1px solid #CCCCCC;
+}
+
+/* Header & Logo Section */
+#header {
+    padding: 10px;
+    border-bottom: 1px solid #E5E5E5;
+    background-color: #EEEEEE;
+}
+
+#header nav {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+/* Retro Link Style */
+a {
+    color: #0033CC; /* Classic YouTube Blue */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Video Grid (Pseudo-Table Layout) */
+.video-box {
+    padding: 15px;
+}
+
+.video-box h3 {
+    font-size: 14px;
+    color: #CC0000; /* YouTube Red accents */
+    border-bottom: 1px solid #CCC;
+    padding-bottom: 3px;
+    margin-bottom: 10px;
+}
+
+.video-grid {
+    display: flex; /* Modern flex for ease, but looks like old floats */
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.thumbnail {
+    width: 130px;
+    text-align: center;
+}
+
+.thumbnail img {
+    border: 1px solid #999;
+    padding: 2px;
+    background: #FFF;
+}
+
+.thumbnail p {
+    margin: 5px 0;
+    font-size: 11px;
+}
+
+/* Sidebar / Info Box */
+.info-panel {
+    background-color: #F2F2F2;
+    border: 1px solid #E5E5E5;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+/* Buttons from the mid-2000s */
+button {
+    background: #DDD;
+    border: 1px solid #999;
+    font-size: 11px;
+    cursor: pointer;
+}
